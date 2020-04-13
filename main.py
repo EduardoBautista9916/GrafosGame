@@ -65,7 +65,7 @@ class Juego(ShowBase):
 
         #Modificamos el tamaño de la ventana
         properties = WindowProperties()
-        properties.setSize(1200, 730)
+        properties.setSize(960, 720)
         self.win.requestProperties(properties)
 
         # Desactivamos el control de cámara predeterminado basado en el mouse.
@@ -75,6 +75,8 @@ class Juego(ShowBase):
         self.setBackgroundColor((57/255),(227/255),(142/255),1)
         self.bg = loadObject("Fondo.jpg",scale=100, depth=100,
                              transparency=True)
+        
+        self.bg = loadObject("CasasA/Casa01.png", scale=6)
 
 app = Juego()
 app.run()
