@@ -8,6 +8,7 @@ from math import sin, cos, pi
 from random import randint, choice, random
 from direct.interval.MetaInterval import Sequence
 from direct.interval.FunctionInterval import Wait, Func
+from direct.gui.DirectGui import *
 import sys
 
 # Constantes que controlarán el comportamiento del juego. Es bueno agrupar constantes 
@@ -15,8 +16,8 @@ import sys
 # donde se usan en el código
 SPRITE_POS = 55    # En el campo de visión predeterminado y una profundidad de 55, las 
 # dimensiones de la pantalla son 40x30 unidades
-SCREEN_X = 20       # La pantalla va de -20 a 20 en X
-SCREEN_Y = 15       # La pantalla va de -15 a 15 en Y
+SCREEN_X = 21       # La pantalla va de -20 a 20 en X
+SCREEN_Y = 16       # La pantalla va de -15 a 15 en Y
 TURN_RATE = 360     # Grados que puede girar la nave en 1 segundo
 ACCELERATION = 10   # Aceleración de la nave en unidades/seg/seg.
 MAX_VEL = 6         # Velocidad máxima del barco en unidades/seg.
@@ -72,11 +73,13 @@ class Juego(ShowBase):
         self.disableMouse()
 
         #Asignamos un color de fondo por defecto en este caso R:52 G:227 B: 1142
-        self.setBackgroundColor((57/255),(227/255),(142/255),1)
-        self.bg = loadObject("Fondo.jpg",scale=100, depth=100,
+        self.setBackgroundColor((25/255),(144/255),(110/255),1)
+        self.bg = loadObject("Fondos/FondoBase.png",scale=100, depth=100,
                              transparency=True)
         
-        self.bg = loadObject("CasasA/Casa01.png", scale=6)
+        self.casa = loadObject("CasasA/Casa06.png", scale=6)
+        self.casa.setX(-16)
+        self.casa.setZ(-11)
 
 app = Juego()
 app.run()
