@@ -76,10 +76,6 @@ class Juego(ShowBase):
         self.setBackgroundColor((25/255),(144/255),(110/255),1)
         self.bg = loadObject("Fondos/FondoBase.png",scale=100, depth=100,
                              transparency=True)
-        
-        self.casa = loadObject("CasasA/Casa06.png", scale=6)
-        self.casa.setX(-16)
-        self.casa.setZ(-11)
 
 app = Juego()
 app.run()
