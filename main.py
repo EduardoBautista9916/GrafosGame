@@ -73,9 +73,49 @@ class Juego(ShowBase):
         self.disableMouse()
 
         #Asignamos un color de fondo por defecto en este caso R:52 G:227 B: 1142
-        self.setBackgroundColor((25/255),(144/255),(110/255),1)
-        self.bg = loadObject("Fondos/FondoBase.png",scale=100, depth=100,
-                             transparency=True)
+        #self.setBackgroundColor((25/255),(144/255),(110/255),1)
+        self.setBackgroundColor(0,0,0,1)
+        self.bg = loadObject("Fondos/FondoBase.png",scale=130, depth=100,
+                            transparency=True)
+        
+        self.cuadro = loadObject("PisosO/Piso18.png")
+
+        self.keyMap={
+            "arriba" : False,
+            "abajo" : False,
+            "izquierda" : False,
+            "derecha" : False
+        }
+        self.accept("w", self.updateKeyMap, ["arriba", True])
+        self.accept("w-up", self.updateKeyMap, ["arriba", False])
+        self.accept("s", self.updateKeyMap, ["abajo", True])
+        self.accept("s-up", self.updateKeyMap, ["abajo", False])
+        self.accept("a", self.updateKeyMap, ["izquierda", True])
+        self.accept("a-up", self.updateKeyMap, ["izquierda", False])
+        self.accept("d", self.updateKeyMap, ["derecha", True])
+        self.accept("d-up", self.updateKeyMap, ["derecha", False])
+        self.updateTask = taskMgr.add(self.update, "update")
+
+    def updateKeyMap(self, controlName, controlSate):
+        self.keyMap[controlName] = controlSate
+        # print(controlName, " accedo a ", controlSate)
+
+    def update(self, task):
+        # Get the amount of time since the last update
+        dt = globalClock.getDt()
+
+        # If any movement keys are pressed, use the above time
+        # to calculate how far to move the character, and apply that.
+        if self.keyMap["arriba"]:
+            self.bg.setZ(self.bg.getZ()-1)
+        if self.keyMap["abajo"]:
+            self.bg.setZ(self.bg.getZ()+1)
+        if self.keyMap["izquierda"]:
+            self.bg.setX(self.bg.getX()+1)
+        if self.keyMap["derecha"]:
+            self.bg.setX(self.bg.getX()-1)
+        return task.cont
+
 
 app = Juego()
 app.run()
